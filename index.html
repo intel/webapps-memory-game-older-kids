@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+ * Copyright (c) 2012, Intel Corporation.
+ *
+ * This program is licensed under the terms and conditions of the
+ * Apache License, version 2.0.  The full text of the Apache License is at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width target-densitydpi=device-dpi initial-scale=1 maximum-scale=1 user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Memory Cards for Older Kids</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/license.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/help.css"></link>
+    <script src="js/help.js"></script>
+    <script src="js/license.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/localizer.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/curvedtextdrawer.js"></script>
+    <script src="js/vec2.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- The "div.pagebg" is the root level div that will be resized to fill the whole screen area.
+        This element has children div-elements for each view. These child divs are then shown or hidden
+        as user navigates between views. -->
+    <div id="licensepage" style="display: none">
+        <iframe id="licensetext" src="README.txt"></iframe>
+        <div id="licensebtnu" class="licensebtn">&uarr;</div>
+        <div id="licensebtnd" class="licensebtn">&darr;</div>
+        <div id="licensebtnq" class="licensebtn">Back</div>
+    </div>
+    <div id="help_dialog" class="helpdialog">
+         <div class="inner">
+           <div id="help_close" class="close"> x </div>
+           <div id="help_contents" class="contents">
+               Can you make it through level four, 
+               and find all the matching pictures?
+               <br><br>
+               Start your journey at level one. Finish the level one 
+               challenge by finding all the pictures three times. 
+               After you’ve beaten level one, you’ve unlocked level two.  
+               Each level gets tougher with more pictures to match.
+               <br><br>
+               Click a face-down picture card to peek at it. Click another 
+               to see if you found a match. If not, they’ll flip back over 
+               and you can try again. If they do match, they’ll remain face up, 
+               and you’re getting closer to winning! 
+               <br><br>
+               If you want to restart and try a different unlocked level, 
+               click Home and you’ll go back to the beginning.
+           </div>
+         </div>
+    </div>
+    <div id="pagebg" class="game_page">
+        <div id="main_page" class="game_page" style="display:block">
+            <div id="main_bg"></div>
+            <div id="main_spetacular_title" class="main_sancreek_text2">THE SPECTACULAR</div>
+            <div id="main_memory_title" class="main_romantique_text">MEMORY</div>
+            <div id="main_extravaganza_title" class="main_sancreek_text">EXTRAVAGANZA!</div>
+        </div>
+        
+        <div id="selLevel_page" class="game_page" style="display:none">
+            <div id="selLevel_bg"></div>
+            <div id="selLevel_title" class="selLevel_sancreek_big">CHOOSE A LEVEL</div>
+            <div id="selLevel_hint" class="selLevel_sancreek_small">YOU MUST UNLOCK EACH LEVEL IN ORDER TO PLAY!</div>
+            
+            <div id="selLevel_levelCard1" class="selLevel_levelCard">1</div>
+            <div id="selLevel_levelCard2" class="selLevel_levelCard setLevel_lockedLevel">2</div>
+            <div id="selLevel_levelCard3" class="selLevel_levelCard setLevel_lockedLevel">3</div>
+            <div id="selLevel_levelCard4" class="selLevel_levelCard setLevel_lockedLevel">4</div>
+            
+            <div id="selLevel_resetLocked"></div>
+            <div id="licensebtnl" style="top: 560px; left: 984px;"> i </div>
+            <div id="main_help" class="helplaunch"> ? </div>
+        </div>
+        
+        <div id="level1" class="game_page" style="display:none">
+            <div id="level1_bg"></div>
+            <div id="level1_indicator" class="level1_indicator_text">LEVEL 1</div>
+            
+            <!-- Cards -->
+            <div id="level1_card_01" class="cardContainer"><div id="l1c1" class="card"><div id="level1_card_1_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_02" class="cardContainer"><div id="l1c2" class="card"><div id="level1_card_2_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_03" class="cardContainer"><div id="l1c3" class="card"><div id="level1_card_3_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_04" class="cardContainer"><div id="l1c4" class="card"><div id="level1_card_4_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_05" class="cardContainer"><div id="l1c5" class="card"><div id="level1_card_5_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_06" class="cardContainer"><div id="l1c6" class="card"><div id="level1_card_6_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_07" class="cardContainer"><div id="l1c7" class="card"><div id="level1_card_7_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_08" class="cardContainer"><div id="l1c8" class="card"><div id="level1_card_8_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_09" class="cardContainer"><div id="l1c9" class="card"><div id="level1_card_9_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_10" class="cardContainer"><div id="l1c10" class="card"><div id="level1_card_10_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_11" class="cardContainer"><div id="l1c11" class="card"><div id="level1_card_11_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            <div id="level1_card_12" class="cardContainer"><div id="l1c12" class="card"><div id="level1_card_12_front" class="front"></div><div class="back lev1CardBg"></div></div></div>
+            
+        </div>
+        
+        <div id="level2" class="game_page" style="display:none">
+            <div id="level2_bg"></div>
+            <div id="level2_indicator" class="level2_indicator_text">LEVEL 2</div>
+            
+            <!-- Cards -->
+            <div id="level2_card_01" class="cardContainer"><div id="l2c1" class="card"><div id="level2_card_1_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_02" class="cardContainer"><div id="l2c2" class="card"><div id="level2_card_2_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_03" class="cardContainer"><div id="l2c3" class="card"><div id="level2_card_3_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_04" class="cardContainer"><div id="l2c4" class="card"><div id="level2_card_4_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_05" class="cardContainer"><div id="l2c5" class="card"><div id="level2_card_5_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_06" class="cardContainer"><div id="l2c6" class="card"><div id="level2_card_6_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_07" class="cardContainer"><div id="l2c7" class="card"><div id="level2_card_7_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_08" class="cardContainer"><div id="l2c8" class="card"><div id="level2_card_8_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_09" class="cardContainer"><div id="l2c9" class="card"><div id="level2_card_9_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_10" class="cardContainer"><div id="l2c10" class="card"><div id="level2_card_10_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_11" class="cardContainer"><div id="l2c11" class="card"><div id="level2_card_11_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_12" class="cardContainer"><div id="l2c12" class="card"><div id="level2_card_12_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_13" class="cardContainer"><div id="l2c13" class="card"><div id="level2_card_13_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_14" class="cardContainer"><div id="l2c14" class="card"><div id="level2_card_14_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_15" class="cardContainer"><div id="l2c15" class="card"><div id="level2_card_15_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_16" class="cardContainer"><div id="l2c16" class="card"><div id="level2_card_16_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_17" class="cardContainer"><div id="l2c17" class="card"><div id="level2_card_17_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+            <div id="level2_card_18" class="cardContainer"><div id="l2c18" class="card"><div id="level2_card_18_front" class="front"></div><div class="back lev2CardBg"></div></div></div>
+        </div>
+        
+        <div id="level3" class="game_page" style="display:none">
+            <div id="level3_bg"></div>
+            <div id="level3_indicator" class="level3_indicator_text">LEVEL 3</div>
+            
+            <!-- Cards -->
+            <div id="level3_card_01" class="cardContainer"><div id="l3c1" class="card"><div id="level3_card_1_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_02" class="cardContainer"><div id="l3c2" class="card"><div id="level3_card_2_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_03" class="cardContainer"><div id="l3c3" class="card"><div id="level3_card_3_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_04" class="cardContainer"><div id="l3c4" class="card"><div id="level3_card_4_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_05" class="cardContainer"><div id="l3c5" class="card"><div id="level3_card_5_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_06" class="cardContainer"><div id="l3c6" class="card"><div id="level3_card_6_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_07" class="cardContainer"><div id="l3c7" class="card"><div id="level3_card_7_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_08" class="cardContainer"><div id="l3c8" class="card"><div id="level3_card_8_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_09" class="cardContainer"><div id="l3c9" class="card"><div id="level3_card_9_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_10" class="cardContainer"><div id="l3c10" class="card"><div id="level3_card_10_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_11" class="cardContainer"><div id="l3c11" class="card"><div id="level3_card_11_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_12" class="cardContainer"><div id="l3c12" class="card"><div id="level3_card_12_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_13" class="cardContainer"><div id="l3c13" class="card"><div id="level3_card_13_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_14" class="cardContainer"><div id="l3c14" class="card"><div id="level3_card_14_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_15" class="cardContainer"><div id="l3c15" class="card"><div id="level3_card_15_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_16" class="cardContainer"><div id="l3c16" class="card"><div id="level3_card_16_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_17" class="cardContainer"><div id="l3c17" class="card"><div id="level3_card_17_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_18" class="cardContainer"><div id="l3c18" class="card"><div id="level3_card_18_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_19" class="cardContainer"><div id="l3c19" class="card"><div id="level3_card_19_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_20" class="cardContainer"><div id="l3c20" class="card"><div id="level3_card_20_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_21" class="cardContainer"><div id="l3c21" class="card"><div id="level3_card_21_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_22" class="cardContainer"><div id="l3c22" class="card"><div id="level3_card_22_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_23" class="cardContainer"><div id="l3c23" class="card"><div id="level3_card_23_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+            <div id="level3_card_24" class="cardContainer"><div id="l3c24" class="card"><div id="level3_card_24_front" class="front"></div><div class="back lev3CardBg"></div></div></div>
+        </div>
+        
+        <div id="level4" class="game_page" style="display:none">
+            <div id="level4_bg"></div>
+            <div id="level4_indicator" class="level3_indicator_text">FINALE!</div>
+            
+            <!-- Cards -->
+            <div id="level4_card_01" class="cardContainer"><div id="l4c1" class="card"><div id="level4_card_1_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_02" class="cardContainer"><div id="l4c2" class="card"><div id="level4_card_2_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_03" class="cardContainer"><div id="l4c3" class="card"><div id="level4_card_3_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_04" class="cardContainer"><div id="l4c4" class="card"><div id="level4_card_4_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_05" class="cardContainer"><div id="l4c5" class="card"><div id="level4_card_5_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_06" class="cardContainer"><div id="l4c6" class="card"><div id="level4_card_6_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_07" class="cardContainer"><div id="l4c7" class="card"><div id="level4_card_7_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_08" class="cardContainer"><div id="l4c8" class="card"><div id="level4_card_8_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_09" class="cardContainer"><div id="l4c9" class="card"><div id="level4_card_9_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_10" class="cardContainer"><div id="l4c10" class="card"><div id="level4_card_10_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_11" class="cardContainer"><div id="l4c11" class="card"><div id="level4_card_11_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_12" class="cardContainer"><div id="l4c12" class="card"><div id="level4_card_12_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_13" class="cardContainer"><div id="l4c13" class="card"><div id="level4_card_13_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_14" class="cardContainer"><div id="l4c14" class="card"><div id="level4_card_14_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_15" class="cardContainer"><div id="l4c15" class="card"><div id="level4_card_15_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_16" class="cardContainer"><div id="l4c16" class="card"><div id="level4_card_16_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_17" class="cardContainer"><div id="l4c17" class="card"><div id="level4_card_17_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_18" class="cardContainer"><div id="l4c18" class="card"><div id="level4_card_18_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_19" class="cardContainer"><div id="l4c19" class="card"><div id="level4_card_19_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_20" class="cardContainer"><div id="l4c20" class="card"><div id="level4_card_20_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_21" class="cardContainer"><div id="l4c21" class="card"><div id="level4_card_21_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_22" class="cardContainer"><div id="l4c22" class="card"><div id="level4_card_22_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_23" class="cardContainer"><div id="l4c23" class="card"><div id="level4_card_23_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+            <div id="level4_card_24" class="cardContainer"><div id="l4c24" class="card"><div id="level4_card_24_front" class="front"></div><div class="back lev4CardBg"></div></div></div>
+        </div>
+        
+        <div id="finaleIntro" class="game_page" style="display:none">
+            <div id="finaleIntro_bg"></div>
+            <div id="finaleIntro_introducing_title" class="finaleIntro_sancreek_text">INTRODUCING THE</div>
+            <div id="finaleIntro_finale_title" class="finaleIntro_romantique_text">FINALE</div>
+            <div id="finaleIntro_memorymatch_title" class="finaleIntro_sancreek_text2">MEMORY MATCH!</div>
+        </div>
+        
+        <div id="victory" class="game_page" style="display:none">
+            <div id="victory_bg"></div>
+            <div id="victory_playagain_box">
+                <img id="victory_playagain_lines" src="images/play_again_lines.png"/>
+                <div id="victory_playagain_title" class="victory_playagain_title_text">PLAY AGAIN</div>
+            </div>
+            <canvas id="curvedText" width="690" height="210"></canvas>
+        </div>
+
+        <!-- Game count indicator that looks like a hand holding a card. -->
+        <div id="handitem" style="display:none">
+            <div id="handitem_card_rect">
+                <div id="handitem_gamenum_title" class="handitem_gamenum_title_text">GAME 3</div>
+                <div id="handitem_stars_container">
+                    <img id="handleitem_star1" src="images/purple_star.png"></img>
+                    <img id="handleitem_star2" src="images/star.png"></img>
+                    <img id="handleitem_star3" src="images/star.png"></img>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Home-button that exits the current game and returs back to main view. -->
+        <div id="homebutton_backtomain" style="display:none">
+            <img id="homebutton_icon" src="images/home.png"></img>
+            <span id="homebutton_text" class="homebutton_backtomain_text" class="debugRect">HOME</span>
+        </div>
+    </div>
+    
+    
+    <audio id="flipcard_sound1" preload="auto"><source src="audio/FlipCard.wav" type="audio/wav" /></audio>
+    <audio id="flipcard_sound2" preload="auto"><source src="audio/FlipCard.wav" type="audio/wav" /></audio>
+    <audio id="startGame_sound" preload="auto" autoplay="autoplay"><source src="audio/StartPage.wav" type="audio/wav" /></audio>
+    <audio id="finaleIntro_sound" preload="auto"><source src="audio/TheFinale.wav" type="audio/wav"/></audio>
+    <audio id="winLevel_sound" preload="auto"><source src="audio/WinLevel.wav" type="audio/wav"/></audio>
+    <audio id="victory_sound" preload="auto"><source src="audio/YouWin.wav" type="audio/wav"/></audio>
+</body>
+</html>
