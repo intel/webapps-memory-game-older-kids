@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" version="2.0 Beta" viewmodes="fullscreen" id="http://yourdomain/memory-game-older-kids">  
-	<icon src="icon_128.png"/>  
-	<content src="index.html"/>  
-	<name>memory-game-older-kids</name> 
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="https://github.com/01org/webapps-memory-game-older-kids" version="1.0" viewmodes="fullscreen">
+    <icon src="icon_128.png"/>
+    <content src="index.html"/>
+<name>memory-game-older-kids</name>
+<tizen:application id="E4PRo70Ja6" required_version="1.0"/>
 </widget>
