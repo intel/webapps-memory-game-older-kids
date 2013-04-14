@@ -7,6 +7,14 @@
  *
  */
 
+Card = function() {
+    this.cardId = "";
+    this.cardFrontId = "";
+    this.cardGraphics = "";
+    this.cardType = -1;
+    this.found = false;
+}
+
 Game = {};
 
 var normalCardImages = [
@@ -53,6 +61,15 @@ var audioItems = [
     "victory_sound"
 ];
 
+var audioSrc = [
+    "audio/FlipCard.wav",
+    "audio/FlipCard.wav",
+    "audio/StartPage.wav",
+    "audio/TheFinale.wav",
+    "audio/WinLevel.wav",
+    "audio/YouWin.wav"
+];
+
 var SOUND_FLIPCARD1 = 0;
 var SOUND_FLIPCARD2 = 1;
 var SOUND_STARTGAME = 2;
@@ -68,7 +85,6 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
 
 
 (function () {
-    var localizer = new Localizer();
     var cardsArray = new Array();
     var levelSelectionUserChoice = -1;
     var ignoreInputs = false;
@@ -87,6 +103,22 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
     Game.introViewSkipCallback = introViewSkipCallback;
     
     /**
+     * Create sound element base on their ID
+     */
+    function createSoundElement(soundId) {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute("id", audioItems[soundId]);
+        audioElement.setAttribute("src", audioSrc[soundId]);
+        if (soundId == SOUND_STARTGAME) {
+            audioElement.setAttribute("preload", "auto");
+            audioElement.setAttribute("autoplay", "autoplay");
+        } else {
+            audioElement.setAttribute("preload", "none");
+        }
+        document.body.appendChild(audioElement);
+    }
+
+    /**
      * Plays sounds base on their ID
      */
     function playSound(soundId) {
@@ -99,14 +131,12 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
      * This function prepares the graphical elements of Victory-screen.
      */
     function prepareVictoryScreen() {
-        localizer.localizeVictoryScreen();
-        
         // Draw the curved YOU WIN text.
         var drawer = new CurvedTextDrawer(document.getElementById("curvedText"));
         var centerPos = drawer.getCanvasCenterPos();
         centerPos.mY = -625;
         drawer.useFont = '70px Romantiques';
-        drawer.drawSectorArc(localizer.getTranslation("victory_youwin"), centerPos.mX, centerPos.mY, 780, 180, 270, 'ccw', true, 'center');
+        drawer.drawSectorArc("YOU WIN", centerPos.mX, centerPos.mY, 780, 180, 270, 'ccw', true, 'center');
         
         $("#homebutton_backtomain").hide();
     }
@@ -117,7 +147,6 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
      */
     function prepareSelectLevelScreen() {
         console.log("--> prepareSelectLevelScreen()");
-        localizer.localizeSelectLevelScreen();
         var lockedLevels = localStorage.getItem(LOCAL_STORAGE_KEY);
         for (var i=1; i < levelLockingStatus.length; ++i) {
             if (lockedLevels != undefined && lockedLevels != null && lockedLevels.length > i) {
@@ -294,6 +323,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             saveStatus();
             // Currently finished level was 4. It means that player has finished the game.
             prepareVictoryScreen();
+            createSoundElement(SOUND_VICTORY);
             playSound(SOUND_VICTORY);
             $("#level4").hide();
             $("#victory").show();
@@ -314,8 +344,8 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         } 
         if (levelOfNextGame == 4) {
             // Show intro view before entring the final level.
-            localizer.localizeFinaleIntroScreen();
             levelLockingStatus[3] = false;
+            createSoundElement(SOUND_FINALEINTRO);
             playSound(SOUND_FINALEINTRO);
             $("#homebutton_backtomain").hide();
             $("#handitem").hide();
@@ -424,7 +454,6 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             $("#handitem_gamenum_title").text("GAME 3");
         }
 
-        localizer.localizeGameScreen(levelNum, passedGames+1);
         $("#homebutton_backtomain").show();
         console.log("<-- startGame()");
     }
@@ -435,22 +464,23 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             $("#main_page").hide();
             $("#selLevel_page").show();
         }
+        license_init("license", "pagebg");
+        help_init("main_help", "help_");
+        createSoundElement(SOUND_FLIPCARD1);
+        createSoundElement(SOUND_FLIPCARD2);
+        createSoundElement(SOUND_LEVEL_WON);
     }
     
     // Initialize game once everything has been loaded.
     $(document).ready(function () {
         console.log("--> document.ready()");
 
-        license_init("license", "pagebg");
-        help_init("main_help", "help_");
-        localizer.localizeMainScreen();
+        createSoundElement(SOUND_STARTGAME);
         
         // Add the event handler functions.
         $("#main_page").click(function () {
             // Hide mainview and show level selection.
-            prepareSelectLevelScreen();
-            $("#main_page").hide();
-            $("#selLevel_page").show();
+            introViewSkipCallback();
         });
         
         $("#selLevel_levelCard1").click(function () {
@@ -507,6 +537,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
                 } else {
                     lastPlayedFlipSound = SOUND_FLIPCARD1;
                 }
+                createSoundElement(SOUND_FLIPCARD1);
                 playSound(lastPlayedFlipSound);
                 clickedCardElement = $(this);
                 ignoreInputs = true;
