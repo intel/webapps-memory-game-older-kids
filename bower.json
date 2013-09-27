@@ -1,0 +1,14 @@
+{
+  "name": "webapps-memorygameolderkids",
+  "version": "1.1.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "sancreek": "http://www.google.com/fonts/download?kit=4pd2m6qwXZ0kNcz4ZkkECS3USBnSvpkopQaUR-2r7iU",
+    "romantiques": "http://www.urbanfonts.com/download.php?fid=8055&file=romantiques.zip",
+    "jquery": "~2.0.3"
+  }
+}

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -30,7 +30,7 @@ Vec2 = function(x, y) {
     if (y != undefined) {
         this.mY = y;
     }
-    
+
     /**
      * Sets new x and y components to this vector.
      * @param   x               X component.
@@ -40,7 +40,7 @@ Vec2 = function(x, y) {
         this.mX = x;
         this.mY = y;
     }
-    
+
     /**
      * Normalizes this vector so that its length will be 1.
      */
@@ -49,7 +49,7 @@ Vec2 = function(x, y) {
         this.mX /= len;
         this.mY /= len;
     }
-    
+
     /**
      * Sums given vector to this vector.
      * @param   vec1            Another vector to sum.
@@ -58,7 +58,7 @@ Vec2 = function(x, y) {
         this.mX += vec1.mX;
         this.mY += vec1.mY;
     }
-    
+
     /**
      * Substracts given vector from this vector.
      * @param   vec1            Vector to be substracted from this one.
@@ -67,7 +67,7 @@ Vec2 = function(x, y) {
         this.mX -= vec1.mX;
         this.mY -= vec1.mY;
     }
-    
+
     /**
      * Returns the length of this vector.
      * @return  Length of this vector.
@@ -75,8 +75,8 @@ Vec2 = function(x, y) {
     this.getLength = function() {
         return Math.sqrt(this.mX*this.mX + this.mY*this.mY);
     }
-    
-    
+
+
     /**
      * Multiplies this vector by given scalar.
      * @param   factor          The multiplier.
@@ -85,7 +85,7 @@ Vec2 = function(x, y) {
         this.mX *= factor;
         this.mY *= factor;
     }
-    
+
     /**
      * Performs 2D rotation around origo to this vector.
      * @param   rads            Rotation amount in radians.
