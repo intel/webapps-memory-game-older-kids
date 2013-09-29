@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012, Intel Corporation.
  *
- * This program is licensed under the terms and conditions of the 
+ * This program is licensed under the terms and conditions of the
  * Apache License, version 2.0.  The full text of the Apache License is at
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -94,14 +94,14 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
     var passedGames = 0;
     var lastPlayedFlipSound = SOUND_FLIPCARD2;
     var levelLockingStatus = [ false, true, true, true ];
-    
+
     // Set memberfunctions.
     Game.flipCallback = flipCallback;
     Game.flipDelayCallback = flipDelayCallback;
     Game.gotoNextGame = gotoNextGame;
     Game.levelSelectionAnimCallback = levelSelectionAnimCallback;
     Game.introViewSkipCallback = introViewSkipCallback;
-    
+
     /**
      * Create sound element base on their ID
      */
@@ -126,7 +126,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         audioElement.pause();
         audioElement.play();
     }
-    
+
     /**
      * This function prepares the graphical elements of Victory-screen.
      */
@@ -137,10 +137,10 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         centerPos.mY = -625;
         drawer.useFont = '70px Romantiques';
         drawer.drawSectorArc("YOU WIN", centerPos.mX, centerPos.mY, 780, 180, 270, 'ccw', true, 'center');
-        
+
         $("#homebutton_backtomain").hide();
     }
-    
+
     /**
      * Reads the level lock status from local storage and sets the card element styles
      * accordingly.
@@ -167,7 +167,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         }
         console.log("<-- prepareSelectLevelScreen()");
     }
-    
+
     /**
      * Saves the level lock status to local storage.
      */
@@ -187,8 +187,8 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         localStorage.setItem(LOCAL_STORAGE_KEY, lockedLevelsStr);
         console.log("<-- saveStatus()");
     }
-    
-    
+
+
     /**
      * Returns the card object of the card whose DIV element has given ID.
      * @param   cardDivName     Name of the cards div element.
@@ -203,7 +203,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         }
         return undefined;
     }
-    
+
     /**
      * Marks the cards as found ones and changes the graphics.
      * @param   card1           First one of the found cards.
@@ -212,7 +212,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
     function matchFound(card1, card2) {
         card1.found = true;
         card2.found = true;
-        
+
         // Change the graphics to glowing ones.
         var gfxIndex = card1.cardType;
         $(card1.cardId).children(".back").css("visibility", "hidden");
@@ -220,7 +220,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         $(card1.cardFrontId).css("background", "url("+glowingCardImages[gfxIndex]+")");
         $(card2.cardFrontId).css("background", "url("+glowingCardImages[gfxIndex]+")");
     }
-    
+
     /**
      * Checks the states of the cards and tells if all the pairs have been found.
      * @return  true if all the pairs have been found.
@@ -234,8 +234,8 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         }
         return true;
     }
-    
-    
+
+
     /**
      * A callback function that gets called when card rotation animation ends. This
      * function checks if two rotated cards are pairs.
@@ -247,7 +247,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             firstFlippedCard = clickedCardElement;
             clickedCardElement = undefined;
             ignoreInputs = false;
-            
+
         } else {
             // This is the second card being turned. Check if they are equal.
             var cardObj1 = getCardObject("#" + firstFlippedCard.attr("id"));
@@ -260,7 +260,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
                 ignoreInputs = false;
                 firstFlippedCard = undefined;
                 clickedCardElement = undefined;
-                
+
             } else {
                 console.log("    no match");
                 window.setTimeout("Game.flipDelayCallback()", 300);
@@ -268,7 +268,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         }
         console.log("<-- Game.flipCallback()");
     }
-    
+
     /**
      * Callbackfunction that rotates the two latest cards upside down again.
      */
@@ -335,13 +335,13 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             // Move to next level.
             passedGames = 0;
             levelOfNextGame++;
-            
+
             // Next level unlocked.
             levelLockingStatus[levelNumber] = false;
             if (levelOfNextGame != 4) {
                 playSound(SOUND_LEVEL_WON);
             }
-        } 
+        }
         if (levelOfNextGame == 4) {
             // Show intro view before entring the final level.
             levelLockingStatus[3] = false;
@@ -357,7 +357,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         saveStatus();
         console.log("<-- gotoNextGame()");
     }
-    
+
     /**
      * A callback function that gets called when level selection animation has ended.
      */
@@ -372,7 +372,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         playSound(SOUND_LEVEL_WON);
         console.log("<-- levelSelectionAnimCallback()");
     }
-    
+
     /**
      * Initializes the structures to start new game.
      * @param   levelNum        The level that will be started.
@@ -382,7 +382,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         console.log("--> startGame()");
         if (resetState) {
             passGames = 0;
-        }       
+        }
 
         // Figure out the amount of cards needed in this level.
         var cardBgGraphics = "url(images/card_purple.png)"
@@ -416,8 +416,8 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         $(".card").removeClass(SHOWCARD_STYLE);
         firstFlippedCard = undefined;
         clickedCardElement = undefined;
-        
-        
+
+
         // Update the hand that holds the game count note.
         var starIconName = stariconsList[levelNum-1];
         for (var gameIndex = 0; gameIndex < 3; ++gameIndex) {
@@ -425,7 +425,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             starImgElement.removeClass("unplayedGameStar");
             if (gameIndex <= passedGames) {
                 starImgElement.attr("src", starIconName);
-                
+
             } else {
                 starImgElement.addClass("unplayedGameStar");
                 starImgElement.attr("src", "images/star.png");
@@ -437,7 +437,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             // The hand image is not shown in final level.
             $("#handitem").hide();
         }
-        
+
         // Control the level elements visibility.
         for (var i=1; i < 5; ++i) {
             if (i == levelNum) {
@@ -470,19 +470,19 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
         createSoundElement(SOUND_FLIPCARD2);
         createSoundElement(SOUND_LEVEL_WON);
     }
-    
+
     // Initialize game once everything has been loaded.
     $(document).ready(function () {
         console.log("--> document.ready()");
 
         createSoundElement(SOUND_STARTGAME);
-        
+
         // Add the event handler functions.
         $("#main_page").click(function () {
             // Hide mainview and show level selection.
             introViewSkipCallback();
         });
-        
+
         $("#selLevel_levelCard1").click(function () {
             // Start game.
             levelSelectionUserChoice = 1;
@@ -526,7 +526,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
                 window.setTimeout("Game.levelSelectionAnimCallback()", 1000);
             }
         });
-        
+
         $(".card").click(function() {
             console.log("--> card.click()");
             if (!ignoreInputs && !($(this).hasClass(SHOWCARD_STYLE))) {
@@ -547,13 +547,13 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             }
             console.log("<-- card.click()");
         });
-        
+
         $("#finaleIntro").click( function() {
             // Start playing final level.
             $("#finaleIntro").hide();
             startGame(4, false);
         });
-        
+
         $("#victory_playagain_box").click(function() {
             console.log("--> victory_playagain_box.click()");
             prepareSelectLevelScreen();
@@ -561,7 +561,7 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             $("#selLevel_page").show();
             console.log("<-- victory_playagain_box.click()");
         });
-        
+
         $("#homebutton_backtomain").click(function() {
             console.log("--> homebutton.click()");
             // Hide current levels and show mainpage.
@@ -574,11 +574,13 @@ var LOCAL_STORAGE_KEY = "memorygame_locked_levels";
             $(this).hide();
             console.log("<-- homebutton.click()");
         });
-        
+
         $("#selLevel_resetLocked").click(function() {
             localStorage.setItem(LOCAL_STORAGE_KEY, '0000');
             prepareSelectLevelScreen();
         });
+
+        scaleBody(document.getElementsByTagName("body")[0], 720);
     });
 
     // Skip the welcome screen after a while.
