@@ -7,7 +7,7 @@
     "components"
   ],
   "dependencies": {
-    "sancreek": "http://www.google.com/fonts/download?kit=4pd2m6qwXZ0kNcz4ZkkECS3USBnSvpkopQaUR-2r7iU",
+    "sancreek": "http://themes.googleusercontent.com/static/fonts/sancreek/v4/0sp5vaO1xlh1oVM73vz23vesZW2xOQ-xsNqO47m55DA.woff",
     "romantiques": "http://www.urbanfonts.com/download.php?fid=8055&file=romantiques.zip",
     "jquery": "~2.0.3"
   }

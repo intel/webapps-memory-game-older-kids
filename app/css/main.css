@@ -16,7 +16,7 @@
 
 @font-face {
     font-family: 'Sancreek';
-    src: local(Sancreek), url('../lib/sancreek/Sancreek-Regular.ttf');
+    src: local(Sancreek), url('../lib/sancreek/index.woff');
 }
 
 
