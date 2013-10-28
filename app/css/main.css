@@ -10,8 +10,8 @@
 /* -------------------------------- main page ----------------------------- */
 
 @font-face {
-    font-family: 'Romantiques';
-    src: local(Romantiques), url('../lib/romantiques/Romantiques.ttf');
+    font-family: 'Ewert';
+    src: local(Ewert), url('../lib/ewert/index.woff');
 }
 
 @font-face {
@@ -104,7 +104,7 @@ body {
 
 .main_romantique_text {
     font-size: 60.5pt;
-    font-family: Romantiques;
+    font-family: Ewert;
     color: #f1e412;
     text-align: center;
 }
@@ -501,7 +501,7 @@ body {
 
 .finaleIntro_romantique_text {
     font-size: 62.5pt;
-    font-family: Romantiques;
+    font-family: Ewert;
     color: #c33f25;
     text-align: center;
     letter-spacing: 20px;
@@ -527,7 +527,7 @@ body {
 }
 .victory_youwin_title_text {
     font-size: 60pt;
-    font-family: Romantiques;
+    font-family: Ewert;
     color: black;
     text-align: center;
 }

@@ -8,7 +8,7 @@
   ],
   "dependencies": {
     "sancreek": "http://themes.googleusercontent.com/static/fonts/sancreek/v4/0sp5vaO1xlh1oVM73vz23vesZW2xOQ-xsNqO47m55DA.woff",
-    "romantiques": "http://goo.gl/M7b2Um",
+    "ewert": "http://themes.googleusercontent.com/static/fonts/ewert/v1/7TssRTXcaLr8beqDiv5lkQ.woff",
     "jquery": "~2.0.3"
   }
 }
